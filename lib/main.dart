@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:clima/screens/loading_screen.dart';
-import 'package:http/http.dart';
 
 void main() => runApp(MyApp());
 
