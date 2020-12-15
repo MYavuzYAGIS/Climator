@@ -7,9 +7,6 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 const APIKEY = '6cfd305a659bfc9e8730c1f3d12505aa';
 
-double latitude;
-double longitude;
-
 class LoadingScreen extends StatefulWidget {
   @override
   _LoadingScreenState createState() => _LoadingScreenState();
@@ -25,20 +22,20 @@ class _LoadingScreenState extends State<LoadingScreen> {
   void getLocationData() async {
     Location location = Location();
     await location.getCurrentLocation();
-    latitude = location.latitude;
-    longitude = location.longitude;
     NetworkHelper networkHelper = NetworkHelper(
-        'https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$APIKEY');
+        'https://api.openweathermap.org/data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=$APIKEY&units=metric');
     var weatherData = await networkHelper.getData();
     Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return LocationScreen();
+      return LocationScreen(
+        locationWeather: weatherData,
+      );
     }));
   }
 
   // GPS ACIK IKEN longtitue- latitude veriyor
   //
   // GPS kapali veya izin verilmedigi zaman:
-  // flutter: User denied permissions to access the device's location.
+  // flutter: User denied permissions to access the device's location..
   // flutter: unable to fetch!
   //
   // lets make http requests
