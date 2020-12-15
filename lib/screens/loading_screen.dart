@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:clima/services/location.dart';
-import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -32,10 +33,27 @@ class _LoadingScreenState extends State<LoadingScreen> {
   // lets make http requests
 
   void getData() async {
-    Response response = await get(
-        'https://api.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=6cfd305a659bfc9e8730c1f3d12505aa');
-    print(response.body);
-    print(response.statusCode);
+    http.Response response = await http.get(
+        'https://api.openweathermap.org/data/2.5/weather?lat=36.9&lon=35&appid=6cfd305a659bfc9e8730c1f3d12505aa');
+    if (response.statusCode == 200) {
+      String data = response.body;
+      print(response.statusCode);
+      var longitude = jsonDecode(data)['coord']['lon'];
+      var latitude = jsonDecode(data)['coord']['lat'];
+      print(longitude);
+      print(latitude);
+      var decoded = jsonDecode(data);
+      var weatherDescription = decoded['weather'][0]['description'];
+      print(weatherDescription);
+      var temp = decoded['main']['temp'];
+      print(temp);
+      var condition = decoded['weather'][0]['id'];
+      print(condition);
+      var city = decoded['name'];
+      print(city);
+    } else {
+      print(response.statusCode);
+    }
   }
 
   @override
