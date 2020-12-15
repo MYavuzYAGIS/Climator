@@ -1,8 +1,8 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=/Users/juba/Developer/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/juba/Downloads/Climator-main"
-export "FLUTTER_TARGET=/Users/juba/Downloads/Climator-main/lib/main.dart"
+export "FLUTTER_APPLICATION_PATH=/Users/juba/MyFlutterProjects/Climator"
+export "FLUTTER_TARGET=/Users/juba/MyFlutterProjects/Climator/lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "SYMROOT=${SOURCE_ROOT}/../build/ios"
 export "OTHER_LDFLAGS=$(inherited) -framework Flutter"
